@@ -1,0 +1,19 @@
+.appInput {
+    font-family: 'Roboto Mono';
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    padding: 13px 50px 13px;
+    outline: 0;
+    outline-offset: 0px;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.appInput:focus {
+    transition: 0.2s;
+    outline: 2px solid #66f2d5;
+    outline-offset: 5px;
+}

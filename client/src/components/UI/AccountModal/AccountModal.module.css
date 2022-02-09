@@ -1,0 +1,33 @@
+.accountModal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1;
+}
+
+.accountModalContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    padding: 25px;
+    background: #fff;
+    min-width: 250px;
+    border: 1px solid #000;
+    z-index: -1;
+}
+
+.accountModal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.changePasswordForm {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
