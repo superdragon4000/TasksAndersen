@@ -7,7 +7,7 @@ import TaskService from '../services/TaskService';
 export default class Store {
     user = {};
     isAuth = false;
-    tasks;
+    tasks = [];
     
     constructor() {
         makeAutoObservable(this);
@@ -36,8 +36,8 @@ export default class Store {
         try {
             const response = await AuthService.registration(email, password);
             localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
+            // this.setUser(response.data.user);
+            // this.setAuth(true);
         } catch (error) {
             console.log(error.response?.data?.message);
         }

@@ -14,7 +14,6 @@ import Activation from '../pages/Activation';
 
 const AppRouter = () => {
   const {store} = useContext(Context);
-  
 
   const [fetchMain, isMainLoading] = useFetching(async () => {
     if (localStorage.getItem('token')) {
@@ -23,22 +22,21 @@ const AppRouter = () => {
     }
   });
 
-  function checkMainAuth() {
-    if (store.isAuth) { 
-      return <Main/>;
-    } 
-      return <div>not auth</div>
-  }
   useEffect(() => {
     fetchMain();
   }, [])
 
+
   return (
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={
+          !isMainLoading ? (store.isAuth ? <Navigate to="/tasks"/>: <Login/>) : <Loader/>
+        } />
+        <Route path="/registration" element={
+          !isMainLoading ? (store.isAuth ? <Navigate to="/tasks"/>: <Registration/>) : <Loader/>
+        } />
         <Route path="/tasks"element={
-          isMainLoading ? <Loader/> : checkMainAuth()
+          !isMainLoading ? (store.isAuth ? <Main/> : <Navigate to="/login"/>) : <Loader/>
         }/>
         <Route path="/activation/:activationLink" element={<Activation />}/>
         <Route path="/" element={<Navigate to="/login" />} />

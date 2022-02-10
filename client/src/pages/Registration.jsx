@@ -25,7 +25,10 @@ const Registration = () => {
             placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
         />
-        <AppButton type='submit' onClick={(e) => {e.preventDefault(); store.registration(email, password)}}>Sign Up</AppButton>
+        <AppButton type='submit' onClick={(e) => {
+          e.preventDefault(); 
+          store.registration(email, password);
+        }}>Sign Up</AppButton>
         <Link to="/login">Login</Link>
     </form>
   );

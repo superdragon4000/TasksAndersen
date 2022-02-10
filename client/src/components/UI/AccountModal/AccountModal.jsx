@@ -12,7 +12,6 @@ const AccountModal = (props) => {
     const [password, setPassword] = useState('');
     const rootClasses = [cl.accountModal];
     if (props.visible) rootClasses.push(cl.active)
-
     const updatePassword = async (e) => {
         e.preventDefault();
         await store.changePassword(password);
@@ -23,8 +22,8 @@ const AccountModal = (props) => {
         <div className={rootClasses.join(' ')} onClick={() => props.setModal(false)}>
             <div className={cl.accountModalContent} onClick={(e) => e.stopPropagation()}>
                 <form className={cl.changePasswordForm}>
-                    <p>Change password</p>
-                    {/* <AppInput type="password" placeholder='Old password'></AppInput> */}
+                    <p>You logged as {store.user.email}</p>
+                    <label>New Password</label>
                     <AppInput type="password" placeholder='New password' onChange={(e) => setPassword(e.target.value)}></AppInput>
                     <AppButton onClick={updatePassword}>Change Password</AppButton>
                 </form>

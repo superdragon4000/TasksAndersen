@@ -4,15 +4,21 @@ import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import AppButton from '../components/UI/AppButton/AppButton';
 import {Context} from '../index';
+import Loader from '../components/UI/Loader/Loader';
+import { useFetching } from '../hooks/useFetching';
 
 const Main = () => {
   const [tasks, setTasks] = useState([]);
   const [modal, setModal] = useState(false);
   const {store} = useContext(Context);
 
+  const [fetchTasks, isTasksLoading] = useFetching(async ()=>{
+    await store.getTasks();
+    await setTasks(store.tasks);
+  });
   
   useEffect(async () => {
-    await setTasks(store.tasks);
+    fetchTasks();
   }, [])
 
   const createTask = (newTask) => {
@@ -29,7 +35,7 @@ const Main = () => {
         <AppButton onClick={() => setModal(true)}>Account</AppButton>
         <TaskForm create={createTask} />
         <AccountModal visible={modal} setModal={setModal} />
-        <TaskList removeTask={removeTask} tasks={tasks}/>
+        {isTasksLoading ? <Loader/> : <TaskList removeTask={removeTask} tasks={tasks}/>}
       </div>
   );
 };

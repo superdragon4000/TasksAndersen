@@ -8,7 +8,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {store} = useContext(Context);
-    // const navigate = useNavigate();
 
     return (
         <form className='__form'>
@@ -28,7 +27,6 @@ const Login = () => {
             <AppButton type='submit' onClick={(e) => {
                 e.preventDefault(); 
                 store.login(email, password);
-                // navigate('/tasks')
             }}>Sign In</AppButton>
             <Link to="/registration">Registration</Link>
         </form>

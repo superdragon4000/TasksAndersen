@@ -32,6 +32,10 @@ class UserController {
 
     async changePassword(req, res, next) {
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return next(ApiError.BadRequest('Validation error', errors.array()));
+            }
             const {refreshToken} = req.cookies;
             const {password} = req.body;
             const user = await userService.getUser(refreshToken);
